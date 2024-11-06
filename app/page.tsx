@@ -23,9 +23,11 @@ const PricingTier = ({ title, price, features, isPopular }) => (
       </ul>
     </CardContent>
     <CardFooter>
-      <Button className="w-full bg-blue-600 hover:bg-blue-700">
-        Get Started
-      </Button>
+      <Link href="/dashboard" className="w-full">
+        <Button className="w-full bg-blue-600 hover:bg-blue-700">
+          Get Started
+        </Button>
+      </Link>
     </CardFooter>
   </Card>
 );
@@ -176,31 +178,13 @@ const LandingPage = () => {
 
           <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {pricingTiers.map((tier, index) => (
-              <Card key={index} className={`w-full max-w-sm ${tier.isPopular ? 'border-blue-500 border-2' : ''}`}>
-                <CardHeader>
-                  <CardTitle className="text-xl font-bold">{tier.title}</CardTitle>
-                  <CardDescription className="text-2xl font-bold">
-                    {tier.price === 'Custom' ? tier.price : `$${tier.price}/mo`}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3">
-                    {tier.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center gap-2">
-                        <Check className="h-4 w-4 text-green-500" />
-                        <span className="text-sm">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-                <CardFooter>
-                  <Link href="/dashboard" className="w-full">
-                    <Button className="w-full bg-blue-600 hover:bg-blue-700">
-                      Get Started
-                    </Button>
-                  </Link>
-                </CardFooter>
-              </Card>
+              <PricingTier
+                key={index}
+                title={tier.title}
+                price={tier.price}
+                features={tier.features}
+                isPopular={tier.isPopular}
+              />
             ))}
           </div>
         </div>
