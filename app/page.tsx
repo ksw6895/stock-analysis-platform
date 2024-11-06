@@ -4,7 +4,17 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check } from 'lucide-react';
 
-const PricingTier = ({ title, price, features, isPopular }) => (
+const PricingTier = ({ 
+  title, 
+  price, 
+  features, 
+  isPopular = false 
+}: {
+  title: string;
+  price: string | number;
+  features: string[];
+  isPopular?: boolean;
+}) => (
   <Card className={`w-full max-w-sm ${isPopular ? 'border-blue-500 border-2' : ''}`}>
     <CardHeader>
       <CardTitle className="text-xl font-bold">{title}</CardTitle>
